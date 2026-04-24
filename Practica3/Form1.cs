@@ -58,11 +58,17 @@ namespace Practica3
         {
             var calculator = new GaussIntegralCalculator();
 
-            // Подписываемся на событие — обновляем прогресс после каждого сегмента
+            // Шаг обновления прогресс-бара: каждый 1% (но не реже чем раз в 1 сегмент)
+            int updateStep = Math.Max(segments / 100, 1);
+
+            // Подписываемся на событие — обновляем прогресс каждые updateStep сегментов
             calculator.IterationSolved += (s, args) =>
             {
-                int progress = (args.Iteration + 1) * 100 / segments;
-                UpdateProgress(progress, args.Sum);
+                if (args.Iteration % updateStep == 0 || args.Iteration == segments - 1)
+                {
+                    int progress = (args.Iteration + 1) * 100 / segments;
+                    UpdateProgress(progress, args.Sum);
+                }
             };
 
             // Вариант 9: f(x) = 5*sqrt(x+24) / ((x+24)^2 * sqrt(x))
