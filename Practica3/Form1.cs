@@ -71,7 +71,7 @@ namespace Practica3
                 }
             };
 
-            // Вариант 9: f(x) = 5*sqrt(x+24) / ((x+24)^2 * sqrt(x))
+            // f(x) = 5*sqrt(x+24) / ((x+24)^2 * sqrt(x))
             // Пределы интегрирования: от 1 до 8
             var result = calculator.CalculateIntegral(
                 x => 5 * Math.Sqrt(x + 24) / (Math.Pow(x + 24, 2) * Math.Sqrt(x)),
@@ -85,7 +85,7 @@ namespace Practica3
             }
         }
 
-        // Обновление прогресс-бара из фонового потока (безопасно через Invoke)
+        // Обновление прогресс-бара из фонового потока 
         private void UpdateProgress(int progress, double currentValue)
         {
             if (InvokeRequired)
@@ -98,7 +98,7 @@ namespace Practica3
             lblResult.Text = $"Текущее значение: {currentValue:F16}";
         }
 
-        // Вывод итогового результата (безопасно через Invoke)
+        // Вывод итогового результата
         private void UpdateResult(double result)
         {
             if (InvokeRequired)
